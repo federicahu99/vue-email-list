@@ -5,8 +5,8 @@ Bonus:
 Far comparire gli indirizzi email solamente quando sono stati tutti generati.
 */
 
-console.log('ok', Vue)
-const getInList= document.getElementById('email-list');
+console.log('ok', Vue);
+const tag = document.getElementById('emails-list')
 
 const root = new Vue ({
     el: "#root",
@@ -21,15 +21,15 @@ const root = new Vue ({
             axios.get(this.endPoint) //axios
             .then((res) => {         
                 this.emailRandom = res.data.response;
-                return this.randomEmailsList.push(this.emailRandom);
+                this.randomEmailsList.push(...this.emailRandom);
                 })
-            },
-        getTenRandomEmails() {
-            for( i < 0 ; i < this.numberOfEmails ; i++ ) {
-                getRandomEmail();
-                return console.log(this.randomEmailsList);
             }
         },
+        created() {
+            for( i < 0 ; i < this.numberOfEmails ; i++ ) {
+                getRandomEmail();
+                return tag.innerHTML= `<li v-for="email in randomEmailsList">${emailRandom}</li> `;
+        }
        
     },
 })
