@@ -18,18 +18,16 @@ const root = new Vue ({
     },
     methods: {
         getRandomEmail() {
-            axios.get(this.endPoint) //axios
-            .then((res) => {         
-                this.emailRandom = res.data.response;
-                this.randomEmailsList.push(...this.emailRandom);
-                })
+            for(let i = 0; i< this.numberOfEmails; i++ ) {
+                axios.get(this.endPoint) //axios all'interno del ciclo for per non fare ripetere più volte lo stesso email random
+                .then((res) => {         
+                    this.emailRandom = res.data.response;
+                    this.randomEmailsList.push(this.emailRandom);
+                    })
             }
         },
-        created() {
-            for( i < 0 ; i < this.numberOfEmails ; i++ ) {
-                getRandomEmail();
-                return tag.innerHTML= `<li v-for="email in randomEmailsList">${emailRandom}</li> `;
-        }
-       
     },
+    created() {
+        this.getRandomEmail();
+    }
 })
