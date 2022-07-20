@@ -11,18 +11,17 @@ const getInList= document.getElementById('email-list');
 const root = new Vue ({
     el: "#root",
     data : {
-        email: '',
+        email: [],
         randomEmails: [],
     },
-    methods: {},
+    methods: {
+    },
     created() {
         axios.get('https://flynn.boolean.careers/exercises/api/random/mail')
-        .then((res) => {
-            for( i < 0 ; i < 10 ; i++) {
-                email = res.data.response;
-                getInList.innerHTML= `<li> ${email} </li>`;
-                return randomEmails.push(email)
-            }
-        })
-    }
+        .then((res) => {         
+            this.email = res.data.response;
+            return this.randomEmails.push(...this.email)
+            
+            })
+        }
 })
